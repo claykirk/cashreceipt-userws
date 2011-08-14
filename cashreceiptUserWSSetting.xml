@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Settings>
+<Roles>
+        <sql>   
+        select rg.rolegroup from rolegroup rg join principalrolegrouplink prgl on prgl.rolegroup_id=rg.rolegroup_id join principal p on p.principal_id = prgl.principal_id where p.username = $arg and (rg.rolegroup like '%CCR%' or rg.rolegroup like 'All')
+        </sql>
+        <column>rolegroup</column>
+</Roles>
+
+<Users>
+        <sql>
+        select username from rolegroup rg join principalrolegrouplink prgl on prgl.rolegroup_id=rg.rolegroup_id join principal p on p.principal_id = prgl.principal_id where rg.rolegroup = 'CCR Login' order by username ASC
+        </sql>
+        <column>username</column>
+</Users>
+</Settings>
